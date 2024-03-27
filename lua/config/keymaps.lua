@@ -36,3 +36,15 @@ keymap.set("n", "<leader>pa", ":echo expand('%:p')<CR>", opts) -- Show Full File
 -- Comments
 keymap.set("n", "<C-_>", "gtc", { noremap = false })
 keymap.set("v", "<C-_>", "goc", { noremap = false })
+
+-- tchis scripts
+-- Define a function to prompt for input and run the script with the input
+function Tsrfce()
+  local component_name = vim.fn.input('Component name: ')
+  if component_name ~= '' then
+    vim.fn.termopen('tsrfce ' .. component_name)
+  end
+end
+
+-- Map a key to invoke the custom function
+vim.api.nvim_set_keymap('n', '<leader>ac', ':lua Tsrfce()<CR>', { noremap = true, silent = true })
